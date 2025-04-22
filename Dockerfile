@@ -1,10 +1,10 @@
-# Etapa 1: Build da aplicação
-FROM golang:1.24.2-alpine3.21 AS builder
-WORKDIR /usr/src/app
+# Estágio 1: Builder com otimizações extremas
+FROM golang:1.24-alpine AS builder
+WORKDIR /app
 COPY . .
-RUN go build -o /app/main .
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o main .
 
-# Etapa 2: Imagem final mínima
+# Estágio 2: Imagem final minimalista
 FROM scratch
-COPY --from=builder /app /app
-CMD ["/app/main"]
+COPY --from=builder /app/main /
+CMD ["/main"]
