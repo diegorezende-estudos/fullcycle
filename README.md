@@ -9,3 +9,5 @@ Para testar, execute:
 docker run rezendediegosofteng/fullcycle
 ```
 
+### Dockerhub
+![Fullcycle Image Dockerhub](assets/dockerhub-public.png)
